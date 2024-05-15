@@ -1,1 +1,1 @@
-print('hello world')
+from http import HTTPStatus
