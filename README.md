@@ -1,2 +1,1 @@
-# http-server
-Simple HTTP server
+is under development, will be for a while
