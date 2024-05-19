@@ -1,5 +1,5 @@
 # A simple HTTP 1.0 server
-With ```GET``` and ```POST``` methods as well as handling ```404``` errors
+HTTP 1.0 server implementation to learn about communication protocols
 
 # A typical HTTP session
 HTTP sessions consist of three phases:
