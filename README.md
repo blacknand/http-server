@@ -17,3 +17,9 @@ Once connection has been established the user-agent can send the request. A clie
    - the HTTP protocol version 
 2. Subsequent lines represent an HTTP header, giving the server information about the type of appropriate data or other data altering its behaviour. These HTTP headers form a block which ends with an empty line.
 3. The final block is an optional block which may contain further data mainly used by the ```POST``` method
+
+# The server response
+After the connected agent has sent its request, the web server processes it and ultimately returns a response. The server response is similar to the client request.
+1. The first line, *the status line*, contains an acknowledgment of the HTTP version and a response status code and finally its human readable meaning
+2. Subsequent lines represent specific HTTP headers, giving the client information about the data sent, again the HTTP headers form a block ending with an empty line
+3. The final block is a data block which contains the optional data
