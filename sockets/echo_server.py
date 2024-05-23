@@ -1,10 +1,9 @@
-import socket                    
+import socket
 
-# Internet address family for IPv4, socket type for TCP
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
-    server_socket.bind(("127.0.0.1", 8080))
-    server_socket.listen(5)
-    conn, addr = server_socket.accept()
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind(("127.0.0.1", 8080))
+    s.listen()
+    conn, addr = s.accept()
     with conn:
         print(f"Connected by {addr}")
         while True:
@@ -12,4 +11,3 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
             if not data:
                 break
             conn.sendall(data)
-
