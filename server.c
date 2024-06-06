@@ -31,5 +31,37 @@ int main(int argc, char **argv) {
     if (sockfd < 0)
         error("Error encountered while opening socket\n");
 
-    
+    // Initalise serv_addr
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+
+    portno = atoi(argv[1]);
+
+    // Setup info
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(portno);                         // Convert to network byte order
+    serv_addr.sin_addr.s_addr = INADDR_ANY;                     // Get IP address of machine on which the server is running
+
+    // Bind socket
+    if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
+        error("Error encountered on binding\n");
+
+    listen(sockfd, 5);
+
+    clilen = sizeof(cli_addr);
+    newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
+    if (newsockfd < 0)
+        error("Error encountered on accept\n");
+
+    // Read from socket
+    bzero(buffer, 256);
+    n = read(newsockfd, buffer, 255);
+    if (n < 0)
+        error("Error encountered while reading from socket\n");
+    printf("Message from client: %s", buffer);
+
+    n = write(newsockfd, "Server has successfully recieved message", 39);
+    if (n < 0)
+        error("Error encountered while writing to socket");
+
+    return 0;
 }
